@@ -1,0 +1,762 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #efefef,
+        #dddddd
+    );
+
+}
+
+.calculadora{
+
+    position:relative;
+
+    width:350px;
+
+    max-width:95vw;
+
+    padding:22px;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+        180deg,
+        #181818 0%,
+        #101010 45%,
+        #050505 100%
+    );
+
+
+    border:3px solid #d71936;
+
+
+    box-shadow:
+
+        0 20px 45px rgba(0,0,0,.55),
+
+        0 0 18px rgba(215,25,54,.35);
+
+
+    overflow:visible;
+
+}
+
+.calculadora::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:30px;
+
+    background:
+
+    linear-gradient(
+        rgba(255,255,255,.04),
+        transparent 40%
+    );
+
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+.topo{
+
+    position:relative;
+
+    margin-bottom:18px;
+
+    z-index:5;
+
+}
+
+.vampi{
+
+    position:absolute;
+
+    width: 185px;
+
+    top:-60px;
+
+    left:-50px;
+
+    z-index:100;
+
+    filter:
+    drop-shadow(
+        0 6px 12px rgba(0,0,0,.60)
+    );
+
+    pointer-events:none;
+
+}
+
+.visor{
+
+
+    position:relative;
+
+
+    z-index:5;
+
+
+    background:#111;
+
+
+
+    border:2px solid #d71936;
+
+
+
+    border-radius:20px;
+
+
+
+    padding:6px;
+
+
+
+    margin-bottom:18px;
+
+
+
+    box-shadow:
+
+
+
+        inset 0 0 10px rgba(255,255,255,.04),
+
+
+
+        0 0 10px rgba(215,25,54,.20);
+
+
+
+}
+
+#display{
+
+
+    width:100%;
+
+
+    height:72px;
+
+
+
+    border:none;
+
+
+
+    outline:none;
+
+
+
+    background:#050505;
+
+
+
+    border-radius:14px;
+
+
+
+    color:#ffd7df;
+
+
+
+    text-align:right;
+
+
+
+    font-size:46px;
+
+
+
+    font-weight:bold;
+
+
+
+    padding:0 18px;
+
+
+
+    line-height:72px;
+
+
+
+    overflow:hidden;
+
+
+
+    white-space:nowrap;
+
+
+
+    text-shadow:
+
+
+
+        0 0 8px rgba(255,120,150,.45);
+
+
+
+}
+
+.botoes{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    grid-auto-rows:66px;
+
+    gap:14px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.botoes button{
+
+
+    width:100%;
+
+
+    height:66px;
+
+
+    border:none;
+
+
+    border-radius:50%;
+
+
+    cursor:pointer;
+
+
+    font-size:28px;
+
+
+    font-weight:bold;
+
+
+    color:#ffffff;
+
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+
+    transition:.18s;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #a3214d,
+
+        #61132c
+
+    );
+
+
+
+    box-shadow:
+
+
+
+        0 8px 15px rgba(0,0,0,.55),
+
+
+
+        inset 0 2px 4px rgba(255,255,255,.08);
+
+
+
+}
+
+.botoes button:hover{
+
+
+    transform:
+
+    translateY(-2px)
+
+    scale(1.04);
+
+
+
+    box-shadow:
+
+
+
+        0 12px 18px rgba(0,0,0,.60),
+
+
+
+        0 0 12px rgba(255,80,120,.35);
+
+
+
+}
+
+.botoes button:active{
+
+
+    transform:scale(.95);
+
+
+
+}
+
+.clear{
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #ff7b8f,
+
+        #c51d3f
+
+    );
+
+
+}
+
+.funcao{
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #c84d72,
+
+        #822142
+
+    );
+
+
+}
+
+.operador{
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #ff5578,
+
+        #c1122f
+
+    );
+
+
+}
+
+.igual{
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #ff416c,
+
+        #b00020
+
+    );
+
+
+}
+
+.mais{
+
+
+    grid-row:span 2;
+
+
+    height:auto;
+
+
+    min-height:146px;
+
+
+
+    border-radius:28px;
+
+
+
+    font-size:42px;
+
+
+
+    display:flex;
+
+
+
+    justify-content:center;
+
+
+
+    align-items:center;
+
+
+
+    background:
+
+
+    linear-gradient(
+
+        180deg,
+
+        #ff5578,
+
+        #c1122f
+
+    );
+
+
+
+    box-shadow:
+
+
+
+        0 8px 15px rgba(0,0,0,.55),
+
+
+
+        0 0 15px rgba(255,80,120,.35),
+
+
+
+        inset 0 2px 5px rgba(255,255,255,.15);
+
+
+
+}
+
+.mais:hover{
+
+
+    transform:
+
+
+    translateY(-3px)
+
+    scale(1.05);
+
+
+
+}
+
+.botoes button img{
+
+
+    width:38px;
+
+
+    height:38px;
+
+
+    object-fit:contain;
+
+
+    user-select:none;
+
+
+    pointer-events:none;
+
+
+}
+
+@media (max-width:420px){
+
+
+    .calculadora{
+
+
+        width:300px;
+
+
+        padding:18px;
+
+
+        border-radius:24px;
+
+
+    }
+
+    .vampi{
+
+
+        width:145px;
+
+
+        top:-25px;
+
+
+        left:-35px;
+
+
+    }
+
+
+
+    .visor{
+
+
+        padding:5px;
+
+
+    }
+
+
+
+    #display{
+
+
+        height:64px;
+
+
+        font-size:36px;
+
+
+        line-height:64px;
+
+
+        padding:0 14px;
+
+
+    }
+
+
+
+    .botoes{
+
+
+        gap:10px;
+
+
+        grid-auto-rows:58px;
+
+
+    }
+
+
+
+    .botoes button{
+
+
+        height:58px;
+
+
+        font-size:24px;
+
+
+    }
+
+
+
+    .mais{
+
+
+        min-height:126px;
+
+
+        font-size:36px;
+
+
+        border-radius:24px;
+
+
+    }
+
+
+
+}
+
+@media (min-width:768px){
+
+
+    .calculadora{
+
+
+        width:370px;
+
+
+    }
+
+
+}
+
+::-webkit-scrollbar{
+
+
+    width:8px;
+
+
+}
+
+
+
+::-webkit-scrollbar-track{
+
+
+    background:#ececec;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb{
+
+
+    background:#c1122f;
+
+
+    border-radius:20px;
+
+
+}
+
+
+
+::-webkit-scrollbar-thumb:hover{
+
+
+    background:#9d1027;
+
+
+}
+
+::selection{
+
+
+    background:#ff4f73;
+
+
+    color:#fff;
+
+
+}
+
+.calculadora{
+
+
+    transition:.25s;
+
+
+}
+
+
+
+.calculadora:hover{
+
+
+    transform:translateY(-2px);
+
+
+    box-shadow:
+
+
+
+        0 25px 55px rgba(0,0,0,.60),
+
+
+
+        0 0 25px rgba(215,25,54,.35);
+
+
+
+}
+
+
+
+.visor:hover{
+
+
+    border-color:#ff4f73;
+
+
+}
+
+
+
+#display:focus{
+
+
+    outline:none;
+
+
+}
+
+img{
+
+
+    user-select:none;
+
+
+    -webkit-user-drag:none;
+
+
+}
